@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.php$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.php [L]
+
+</IfModule>
+
+<FilesMatch "\.(php|html|htm)$">
+    <IfModule mod_headers>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
