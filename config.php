@@ -2,7 +2,7 @@
 
 // ========== DATABASE ==========
 
-define('DB_NAME', 'guaraci');
+define('DB_NAME', 'kuarasy');
 define('DB_USER', 'gandalf');
 define('DB_PASSWORD', 'you_shall_not_pass');
 

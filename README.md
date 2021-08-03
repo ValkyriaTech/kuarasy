@@ -1,4 +1,4 @@
-# Guaraci
+# Kûarasy
 Just a simple PHP - MySQL framework
 
 ## About
