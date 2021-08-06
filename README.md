@@ -15,5 +15,7 @@ As default, **DEFAULT_VIEW** is defined in <code>config.php</code>. It holds the
 The basic REST API in this framework uses a **action** request field to define the task / route
 See how it works in <code>/controllers/Api.php</code>
 
+After installation test it: [http://localhost/kuarasy?action=status](http://localhost/kuarasy?action=status)
+
 ### Scheduled Tasks
 Each task uses a pair of request fields **scheduled** and **key**. See how it works in <code>config.php</code> and <code>index.php</code>
