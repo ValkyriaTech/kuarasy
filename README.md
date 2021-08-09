@@ -17,5 +17,8 @@ See how it works in <code>/controllers/Api.php</code>
 
 After installation test it: [http://localhost/kuarasy?action=status](http://localhost/kuarasy?action=status)
 
-### Scheduled Tasks
-Each task uses a pair of request fields **scheduled** and **key**. See how it works in <code>config.php</code> and <code>index.php</code>
+### Cron jobs
+Each task uses a pair of command fields **taks** and **key**. Try this:  
+```
+php index.php task=say_hello key=key_example
+```
