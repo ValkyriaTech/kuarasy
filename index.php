@@ -2,6 +2,7 @@
 
 require_once('config.php');
 require_once('controllers/Api.php');
+require_once('controllers/Cron.php');
 require_once('views/Default.php');
 
 $action = $_REQUEST['action'] ?? null;
@@ -18,9 +19,8 @@ if ($action) {
   parse_str($argv[2], $params);
   $key = $params['key'];
 
-  if ($task == 'say_hello' && $key == SAY_HELLO) {
-    echo 'Task: Hello, World!';
-  }
+  $cron = new Cron($task, $key);
+  $cron->execute();
 
 } else {
 
