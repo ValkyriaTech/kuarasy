@@ -5,17 +5,20 @@ require_once('controllers/Api.php');
 require_once('views/Default.php');
 
 $action = $_REQUEST['action'] ?? null;
-$scheduledTask = $_REQUEST['scheduled'] ?? null;
 
 if ($action) {
 
   $api = new Api();
   $api->interpretAction($action);
 
-} elseif ($scheduledTask) {
+} elseif (!empty($argv)) {
 
-  $key = $_REQUEST['key'];
-  if ($scheduledTask == 'say_hello' && $key == EXAMPLE_TASK) {
+  parse_str($argv[1], $params);
+  $task = $params['task'];
+  parse_str($argv[2], $params);
+  $key = $params['key'];
+
+  if ($task == 'say_hello' && $key == SAY_HELLO) {
     echo 'Task: Hello, World!';
   }
 
