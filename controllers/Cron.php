@@ -1,20 +1,24 @@
 <?php
 
+require_once('Helper.php');
+
 class Cron {
 
   private $task;
-  private $key;
+  private $helper;
 
-  public function __construct($task = null, $key = null) {
-    if (!empty($task) && !empty($key)) {
+  public function __construct($task = null) {
+    if (!empty($task)) {
       $this->task = $task;
-      $this->key = $key;
     }
+    $this->helper = new Helper();
   }
 
   public function execute() {
-    if ($this->task == 'say_hello' && $this->key == SAY_HELLO) {
-      echo 'Task: Hello, World!';
+    switch ($this->task) {
+      case 'say_hello':
+        $this->helper->console->createMessage(0, 'Hello, World!');
+        break;
     }
   }
 }

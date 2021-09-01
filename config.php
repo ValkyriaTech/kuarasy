@@ -6,10 +6,6 @@ define('DB_NAME', 'kuarasy');
 define('DB_USER', 'gandalf');
 define('DB_PASSWORD', 'you_shall_not_pass');
 
-// ========== SCHEDULED TASKS ==========
-
-define('EXAMPLE_TASK', 'key_example');
-
 // ========== APPLICATION ==========
 
 define('DEFAULT_VIEW', 'example');

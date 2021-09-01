@@ -5,6 +5,6 @@ class Console {
     $time = date('Y-m-d H:i:s');
     $ident = str_repeat('-', $level);
 
-    echo '(' . $time . ') ' . $ident . ' ' . $message . PHP_EOL;
+    echo '(' . $time . ') ' . (($level > 0) ? $ident . ' ' : '') . $message . PHP_EOL;
   }
 }

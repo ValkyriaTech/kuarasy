@@ -16,10 +16,8 @@ if ($action) {
 
   parse_str($argv[1], $params);
   $task = $params['task'];
-  parse_str($argv[2], $params);
-  $key = $params['key'];
 
-  $cron = new Cron($task, $key);
+  $cron = new Cron($task);
   $cron->execute();
 
 } else {
