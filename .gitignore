@@ -1,2 +1,7 @@
-/log
-/uploads
+/log/*.log
+/uploads/*.jpg
+/uploads/*.jpeg
+/uploads/*.png
+/uploads/*.svg
+/uploads/*.gif
+/uploads/*.pdf
