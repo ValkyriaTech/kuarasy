@@ -25,6 +25,7 @@ class Helper {
       'message' => $msg
     ];
 
+    header('Content-Type: application/json; charset=utf-8');
     return json_encode((object) $response);
   }
 }
