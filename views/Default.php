@@ -33,4 +33,8 @@ class DefaultView {
   public function checkStatus() {
     echo $this->model->checkConnection();
   }
+
+  public function error() {
+    echo $this->helper->createMessage(false);
+  }
 }
