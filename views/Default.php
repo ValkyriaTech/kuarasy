@@ -1,16 +1,16 @@
 <?php
 
 require_once(dirname(__DIR__, 1) . '/controllers/Helper.php');
-require_once(dirname(__DIR__, 1) . '/models/Default.php');
+require_once(dirname(__DIR__, 1) . '/controllers/Default.php');
 
 class DefaultView {
 
   protected $helper;
-  private $model;
+  private $controller;
 
   public function __construct() {
     $this->helper = new Helper();
-    $this->model = new DefaultModel();
+    $this->controller = new DefaultController();
   }
 
   public function load($view = DEFAULT_VIEW, $contents = null) {
@@ -31,7 +31,7 @@ class DefaultView {
   }
 
   public function checkStatus() {
-    echo $this->model->checkConnection();
+    echo $this->controller->checkConnection();
   }
 
   public function error() {
