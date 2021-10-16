@@ -18,7 +18,7 @@ class DefaultView {
     if ($path) {
       $files = scandir($path);
       foreach ($files as $key => $value) {
-        if ($value == 'index.html' || $value == 'index.php' || $value == 'default.html' || $value == 'default.php') {
+        if (in_array($value, DEFAULT_VIEW_FILENAMES)) {
           include_once($path . '/' . $value);
           break;
         }
