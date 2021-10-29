@@ -18,7 +18,7 @@ See how it works in <code>/controllers/Api.php</code>
 After installation test it: [http://localhost/kuarasy?action=status](http://localhost/kuarasy?action=status)
 
 ### Cron jobs
-Each task uses a **task** fiels fo identification. Try this:  
+Each task uses a **task** field for identification. Try this:  
 ```
 php index.php task=say_hello
 ```
