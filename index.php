@@ -24,9 +24,13 @@ if ($action) {
 
   $defaultView = new DefaultView();
 
-  $path = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-  if(!empty($path) && $defaultView->pathExists($path))
-    $defaultView->load($path);
+  $pathInfo = array_filter(explode('/', str_replace(BASEPATH, '', $_SERVER['REQUEST_URI'])));
+
+  $view = current($pathInfo);
+  $path = (count($pathInfo) > 1) ? end($pathInfo) : null;
+
+  if(!empty($view) && $defaultView->viewExists($view))
+    $defaultView->load($view, $path);
   else
     $defaultView->load();
 

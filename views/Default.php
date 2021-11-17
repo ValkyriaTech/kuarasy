@@ -13,20 +13,36 @@ class DefaultView {
     $this->controller = new DefaultController();
   }
 
-  public function load($view = DEFAULT_VIEW, $contents = null) {
+  public function load($view = DEFAULT_VIEW, $subview = null, $contents = null) {
     $path = (__DIR__ . '/' . $view);
     if ($path) {
-      $files = scandir($path);
-      foreach ($files as $key => $value) {
-        if (in_array($value, DEFAULT_VIEW_FILENAMES)) {
-          include_once($path . '/' . $value);
-          break;
+      if (!empty($subview)) {
+
+        foreach (VIEW_EXTS as $ext) {
+          $filename = $path . '/' . $subview . $ext;
+          if (file_exists($filename)) {
+            include_once($filename);
+            break;
+          }
         }
+
+      } else {
+
+        foreach (VIEW_FILENAMES as $name) {
+          foreach (VIEW_EXTS as $ext) {
+            $filename = $path . '/' . $name . $ext;
+            if (file_exists($filename)) {
+              include_once($filename);
+              break;
+            }
+          }
+        }
+
       }
     }
   }
 
-  public function pathExists($view) {
+  public function viewExists($view) {
     return is_dir(__DIR__ . '/' . $view);
   }
 
