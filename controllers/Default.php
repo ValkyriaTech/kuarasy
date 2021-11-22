@@ -5,7 +5,6 @@ require_once('Helper.php');
 
 require_once(dirname(__DIR__, 1) . '/models/Default.php');
 
-
 class DefaultController {
 
 	private $helper;
