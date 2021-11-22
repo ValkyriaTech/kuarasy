@@ -26,7 +26,7 @@ if ($action) {
 
   $pathInfo = array_filter(explode('/', str_replace(BASEPATH, '', $_SERVER['REQUEST_URI'])));
 
-  $view = current($pathInfo);
+  $view = strtok(current($pathInfo), '?');
   $path = (count($pathInfo) > 1) ? end($pathInfo) : null;
 
   if(!empty($view) && $defaultView->viewExists($view))
