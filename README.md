@@ -26,7 +26,7 @@ php index.php task=say_hello
 ### PDO Statement Query Builder
 <code>models/Item::statementQueryBuilder($type, $fields = null, $where = null)</code>  
 Simple PDO query builder for common SQL operations.  
-Create a new class from **models/Item** and set <code>tableName</code> value in constructor. Check [https://github.com/ValkyriaTech/kuarasy/blob/main/models/Example.php](models/Example) for help.  
+Create a new class from **models/Item** and set <code>tableName</code> value in constructor. Check [models/Example](https://github.com/ValkyriaTech/kuarasy/blob/main/models/Example.php) for help.  
 #### Examples
 - SELECT  
 ```php
