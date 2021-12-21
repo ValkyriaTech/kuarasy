@@ -14,7 +14,7 @@ abstract class Item {
 
     $this->helper = new Helper();
     try {
-      $this->conn = new PDO('mysql:dbname=' . DB_NAME . '; host=localhost', DB_USER, DB_PASSWORD);
+      $this->conn = new PDO('mysql:dbname=' . K_DB_NAME . '; host=localhost', K_DB_USER, K_DB_PASSWORD);
 
       if ($this->conn) {
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

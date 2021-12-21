@@ -5,9 +5,9 @@ ini_set('display_errors', 0);
 
 // ========== DATABASE ==========
 
-define('DB_NAME', '');
-define('DB_USER', '');
-define('DB_PASSWORD', '');
+define('K_DB_NAME', '');
+define('K_DB_USER', '');
+define('K_DB_PASSWORD', '');
 
 // ========== APPLICATION ==========
 
