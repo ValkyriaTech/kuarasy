@@ -129,4 +129,8 @@ abstract class Item {
       return $stmt;
     }
   }
+
+  public function getLastInsertId() {
+    return $this->conn->lastInsertId();
+  }
 }
