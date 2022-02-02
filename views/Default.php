@@ -47,7 +47,7 @@ class DefaultView {
   }
 
   public function checkStatus() {
-    echo $this->controller->checkConnection();
+    echo $this->controller->checkStatus();
   }
 
   public function error() {

@@ -115,3 +115,16 @@ if ($stmt->execute())
 else
   $this->helper->log->generateLog('Error during SQL exec :(');
 ```
+
+#### Helply db functions
+<code>models/DefaultModel</code> also has ready to use functions, use it like bellow:  
+
+```php
+$model = new DefaultModel();
+$model->tableName = 'person';
+
+$people = $model->get();
+
+$id = 1;
+$deleted = (bool) $model->delete($id);
+```

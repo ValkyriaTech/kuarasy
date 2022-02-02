@@ -1,7 +1,8 @@
 <?php
 
-ini_set('log_errors', 1);
-ini_set('display_errors', 0);
+// ========== KUARASY ==========
+
+define('KUARASY_VERSION', '1.4.0');
 
 // ========== DATABASE ==========
 
@@ -10,6 +11,9 @@ define('K_DB_USER', '');
 define('K_DB_PASSWORD', '');
 
 // ========== APPLICATION ==========
+
+ini_set('log_errors', 1);
+ini_set('display_errors', 0);
 
 define('DEFAULT_VIEW', 'example');
 define('VIEW_FILENAMES', ['index', 'default']);

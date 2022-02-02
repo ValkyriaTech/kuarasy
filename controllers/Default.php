@@ -15,7 +15,20 @@ class DefaultController {
 		$this->model = new DefaultModel();
 	}
 
-	public function checkConnection() {
-		return $this->helper->createMessage((bool) $this->model->checkConnection());
+	public function checkStatus() {
+		$content = (object) [
+			'kuarasy' => [
+				'version' => KUARASY_VERSION
+			],
+			'php' => [
+				'version' => phpversion()
+			],
+			'mysql' => [
+				'connected' => (bool) $this->model->checkConnection(),
+				'version' => $this->model->getMySqlVersion()['Value']
+			]
+		];
+
+		return $this->helper->createMessage(!empty($content), $content);
 	}
 }

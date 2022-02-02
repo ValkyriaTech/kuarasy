@@ -19,7 +19,6 @@ class Example extends Item {
   // create your own PDO statement
   public function save() {
     try {
-
       if(!empty($this->id))
         $stmt = $this->conn->prepare('UPDATE `person` SET `name` = :name WHERE `id` = :id;');
       else
