@@ -19,6 +19,10 @@ class Api {
         $this->default->checkStatus();
         break;
 
+      case 'uploadImage':
+        $this->upload->uploadImage();
+        break;
+
       case 'example':
         echo 'Hello, world!';
         break;
