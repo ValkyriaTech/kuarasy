@@ -4,7 +4,10 @@ require_once('Item.php');
 
 class DefaultModel extends Item {
 
-  public function __construct() {}
+  public function __construct($tableName = null) {
+    if (!empty($tableName))
+      $this->tableName = $tableName;
+  }
 
   public function checkConnection() {
     parent::__construct();
@@ -40,10 +43,8 @@ class DefaultModel extends Item {
     $obj = new DefaultModel();
 
     $stmt = $obj->statementQueryBuilder(
-      // type
       'select',
       $fields,
-      // where
       $where
     );
 
@@ -68,18 +69,44 @@ class DefaultModel extends Item {
     $obj = new DefaultModel();
 
     $stmt = $obj->statementQueryBuilder(
-      // type
       'delete',
       null,
-      // where
       [
         [
           'field' => 'id',
-          'operator' => '=', // =, <=, >=
+          'operator' => '=',
           'value' => $id
         ]
       ]
     );
+
+    if ($stmt->execute())
+      return $stmt->rowCount();
+    else
+      $obj->helper->log->generateLog('Error during SQL exec :(');
+  }
+
+  /**
+  * REQUIRES DefaultModel->tableName setted
+  * Insert or update row
+  * @param array $fields String fields list: ['a', 'b']
+  * @param array $where Array field/operation list: [['field'=>'id','operator'=>'=','value'=>8], ...]
+  * @return int
+  */
+  public static function save($fields = null, $where = null) {
+    $obj = new DefaultModel();
+
+    if (empty($where))
+      $stmt = $obj->statementQueryBuilder(
+        'insert',
+        $fields
+      );
+    else
+      $stmt = $obj->statementQueryBuilder(
+        'update',
+        $fields,
+        $where
+      );
 
     if ($stmt->execute())
       return $stmt->rowCount();
