@@ -24,7 +24,7 @@ class DefaultController {
 				'version' => phpversion()
 			],
 			'mysql' => [
-				'connected' => (bool) $this->model->checkConnection(),
+				'connected' => $this->model->checkConnection(),
 				'version' => $this->model->getMySqlVersion()['Value']
 			]
 		];

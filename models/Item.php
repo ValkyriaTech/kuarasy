@@ -3,11 +3,10 @@
 require_once(dirname(__DIR__, 1) . '/config.php');
 require_once(dirname(__DIR__, 1) . '/controllers/Helper.php');
 
-abstract class Item {
+class Item {
 
   protected $helper;
   protected $conn;
-
   protected $tableName;
 
   protected function __construct() {
@@ -132,5 +131,88 @@ abstract class Item {
 
   public function getLastInsertId() {
     return $this->conn->lastInsertId();
+  }
+
+  /**
+  * REQUIRES DefaultModel->tableName setted
+  * Fetch multiple/single rows
+  * @param array $fields String fields list: ['a', 'b']
+  * @param array $where Array field/operation list: [['field'=>'id','operator'=>'=','value'=>8], ...]
+  * @param bool $single Set true to fetch single row
+  * @return array
+  */
+  public static function get($fields = null, $where = null, $single = false) {
+    $obj = new Item();
+
+    $stmt = $obj->statementQueryBuilder(
+      'select',
+      $fields,
+      $where
+    );
+
+    if ($stmt->execute()) {
+
+      if ($single)
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+      else
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } else
+        $obj->helper->log->generateLog('Error during SQL exec :(');
+  }
+
+  /**
+  * REQUIRES DefaultModel->tableName setted
+  * Delete one item by it's id
+  * @param $id db item id
+  * @return int
+  */
+  public static function delete($id) {
+    $obj = new Item();
+
+    $stmt = $obj->statementQueryBuilder(
+      'delete',
+      null,
+      [
+        [
+          'field' => 'id',
+          'operator' => '=',
+          'value' => $id
+        ]
+      ]
+    );
+
+    if ($stmt->execute())
+      return $stmt->rowCount();
+    else
+      $obj->helper->log->generateLog('Error during SQL exec :(');
+  }
+
+  /**
+  * REQUIRES DefaultModel->tableName setted
+  * Insert or update row
+  * @param array $fields String fields list: ['a', 'b']
+  * @param array $where Array field/operation list: [['field'=>'id','operator'=>'=','value'=>8], ...]
+  * @return int
+  */
+  public static function save($fields = null, $where = null) {
+    $obj = new Item();
+
+    if (empty($where))
+      $stmt = $obj->statementQueryBuilder(
+        'insert',
+        $fields
+      );
+    else
+      $stmt = $obj->statementQueryBuilder(
+        'update',
+        $fields,
+        $where
+      );
+
+    if ($stmt->execute())
+      return $stmt->rowCount();
+    else
+      $obj->helper->log->generateLog('Error during SQL exec :(');
   }
 }
