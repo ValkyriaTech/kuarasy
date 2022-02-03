@@ -129,7 +129,7 @@ class Item {
     }
   }
 
-  public function getLastInsertId() {
+  protected function getLastInsertId() {
     return $this->conn->lastInsertId();
   }
 
@@ -141,10 +141,8 @@ class Item {
   * @param bool $single Set true to fetch single row
   * @return array
   */
-  public static function get($fields = null, $where = null, $single = false) {
-    $obj = new Item();
-
-    $stmt = $obj->statementQueryBuilder(
+  protected function get($fields = null, $where = null, $single = false) {
+    $stmt = $this->statementQueryBuilder(
       'select',
       $fields,
       $where
@@ -158,7 +156,7 @@ class Item {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     } else
-        $obj->helper->log->generateLog('Error during SQL exec :(');
+        $this->helper->log->generateLog('Error during SQL exec :(');
   }
 
   /**
@@ -167,10 +165,8 @@ class Item {
   * @param $id db item id
   * @return int
   */
-  public static function delete($id) {
-    $obj = new Item();
-
-    $stmt = $obj->statementQueryBuilder(
+  protected function delete($id) {
+    $stmt = $this->statementQueryBuilder(
       'delete',
       null,
       [
@@ -185,7 +181,7 @@ class Item {
     if ($stmt->execute())
       return $stmt->rowCount();
     else
-      $obj->helper->log->generateLog('Error during SQL exec :(');
+      $this->helper->log->generateLog('Error during SQL exec :(');
   }
 
   /**
@@ -195,16 +191,14 @@ class Item {
   * @param array $where Array field/operation list: [['field'=>'id','operator'=>'=','value'=>8], ...]
   * @return int
   */
-  public static function save($fields = null, $where = null) {
-    $obj = new Item();
-
+  protected function save($fields = null, $where = null) {
     if (empty($where))
-      $stmt = $obj->statementQueryBuilder(
+      $stmt = $this->statementQueryBuilder(
         'insert',
         $fields
       );
     else
-      $stmt = $obj->statementQueryBuilder(
+      $stmt = $this->statementQueryBuilder(
         'update',
         $fields,
         $where
@@ -213,6 +207,6 @@ class Item {
     if ($stmt->execute())
       return $stmt->rowCount();
     else
-      $obj->helper->log->generateLog('Error during SQL exec :(');
+      $this->helper->log->generateLog('Error during SQL exec :(');
   }
 }
