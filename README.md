@@ -120,7 +120,8 @@ else
 <code>models/DefaultModel</code> also has ready to use functions, use it like bellow:  
 
 ```php
-$model = new DefaultModel('person');
+$model = new DefaultModel();
+$model->tableName = 'person';
 
 $people = $model->get();
 
