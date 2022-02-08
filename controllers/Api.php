@@ -19,8 +19,8 @@ class Api {
         $this->default->checkStatus();
         break;
 
-      case 'uploadImage':
-        $this->upload->uploadImage();
+      case 'uploadFile':
+        $this->upload->uploadFile();
         break;
 
       case 'example':

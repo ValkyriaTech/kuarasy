@@ -14,30 +14,25 @@ class UploadController {
       mkdir(UPLOADS_DIR, 0777, true);
   }
 
-  public function uploadImage() {
+  public function uploadFile() {
     $directoryName = UPLOADS_DIR . date('Y') . '/' . date('m');
     if (!file_exists($directoryName))
       mkdir($directoryName, 0777, true);
 
     $attachment = $_FILES['file'];
 
-    $supportedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-    if (in_array($attachment['type'], $supportedTypes)) {
-      // check if is real image
-      if (getimagesize($attachment['tmp_name'])) {
+    if (in_array($attachment['type'], SUPPORTED_FILE_TYPES)) {
+      $ext = strtolower(pathinfo($attachment['name'], PATHINFO_EXTENSION));
+      $filename = basename(bin2hex(random_bytes(16)) . '.' . $ext);
+      $targetFile = $directoryName . '/' . $filename;
 
-        $ext = strtolower(pathinfo($attachment['name'], PATHINFO_EXTENSION));
-        $filename = basename(bin2hex(random_bytes(16)) . '.' . $ext);
-        $targetFile = $directoryName . '/' . $filename;
+      if (move_uploaded_file($attachment['tmp_name'], $targetFile)) {
 
-        if (move_uploaded_file($attachment['tmp_name'], $targetFile)) {
+        $content = (object) [
+          'file_path' => $filename
+        ];
+        return $this->helper->createMessage(true, $content, 'File sent!');
 
-          $content = (object) [
-            'file_path' => $filename
-          ];
-          return $this->helper->createMessage(true, $content, 'File sent!');
-
-        }
       }
     } else
         return $this->helper->createMessage(false, null, 'File extension not supported!');

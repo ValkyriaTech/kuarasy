@@ -2,7 +2,7 @@
 
 // ========== KUARASY ==========
 
-define('KUARASY_VERSION', '1.4.2');
+define('KUARASY_VERSION', '1.4.3');
 
 // ========== DATABASE ==========
 
@@ -20,4 +20,14 @@ define('VIEW_FILENAMES', ['index', 'default']);
 define('VIEW_EXTS', ['.html', '.php']);
 
 define('BASEPATH', '');
+
 define('UPLOADS_DIR', dirname(__DIR__, 1) . BASEPATH . '/uploads/');
+define('SUPPORTED_FILE_TYPES', [
+  'text/plain',
+  'text/csv',
+  'application/pdf',
+  'image/png',
+  'image/jpg',
+  'image/jpeg',
+  'image/gif'
+]);
