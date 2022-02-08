@@ -1,15 +1,11 @@
 <?php
 
-require_once('Upload.php');
-
 class Api {
 
   private $default;
-  private $upload;
 
   public function __construct() {
     $this->default = new DefaultView();
-    $this->upload = new UploadController();
   }
 
   public function interpretAction($action) {
@@ -20,7 +16,7 @@ class Api {
         break;
 
       case 'uploadFile':
-        $this->upload->uploadFile();
+        $this->default->uploadFile();
         break;
 
       case 'example':

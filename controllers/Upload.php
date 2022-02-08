@@ -15,7 +15,8 @@ class UploadController {
   }
 
   public function uploadFile() {
-    $directoryName = UPLOADS_DIR . date('Y') . '/' . date('m');
+    $datePath = date('Y') . '/' . date('m');
+    $directoryName = UPLOADS_DIR . $datePath;
     if (!file_exists($directoryName))
       mkdir($directoryName, 0777, true);
 
@@ -29,7 +30,7 @@ class UploadController {
       if (move_uploaded_file($attachment['tmp_name'], $targetFile)) {
 
         $content = (object) [
-          'file_path' => $filename
+          'file_path' => $datePath . '/' . $filename
         ];
         return $this->helper->createMessage(true, $content, 'File sent!');
 
