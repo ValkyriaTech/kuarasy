@@ -141,7 +141,7 @@ class Item {
   * @param bool $single Set true to fetch single row
   * @return array
   */
-  protected function get($fields = null, $where = null, $single = false) {
+  protected function getDefault($fields = null, $where = null, $single = false) {
     $stmt = $this->statementQueryBuilder(
       'select',
       $fields,
@@ -165,7 +165,7 @@ class Item {
   * @param $id db item id
   * @return int
   */
-  protected function delete($id) {
+  protected function deleteDefault($id) {
     $stmt = $this->statementQueryBuilder(
       'delete',
       null,
@@ -191,7 +191,7 @@ class Item {
   * @param array $where Array field/operation list: [['field'=>'id','operator'=>'=','value'=>8], ...]
   * @return int
   */
-  protected function save($fields = null, $where = null) {
+  protected function saveDefault($fields, $where = null) {
     if (empty($where))
       $stmt = $this->statementQueryBuilder(
         'insert',
