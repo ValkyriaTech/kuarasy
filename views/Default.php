@@ -25,22 +25,21 @@ class DefaultView {
           $filename = $path . '/' . $subview . $ext;
           if (file_exists($filename)) {
             include_once($filename);
+            exit();
+          }
+        }
+
+      }
+
+      // load default view if subview doesn't exists
+      foreach (VIEW_FILENAMES as $name) {
+        foreach (VIEW_EXTS as $ext) {
+          $filename = $path . '/' . $name . $ext;
+          if (file_exists($filename)) {
+            include_once($filename);
             break;
           }
         }
-
-      } else {
-
-        foreach (VIEW_FILENAMES as $name) {
-          foreach (VIEW_EXTS as $ext) {
-            $filename = $path . '/' . $name . $ext;
-            if (file_exists($filename)) {
-              include_once($filename);
-              break;
-            }
-          }
-        }
-
       }
     }
   }
