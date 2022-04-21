@@ -7,11 +7,11 @@
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_URI} !(.*)/$
   # Force Trailing slash
-  RewriteRule ^((.*)[^/])$ /kuarasy/$1/ [L,R=301]
+  RewriteRule ^((.*)[^/])$ /$1/ [L,R=301]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /kuarasy/index.php [L]
+  RewriteRule . /index.php [L]
 
 </IfModule>
 
