@@ -26,11 +26,11 @@
           <h2>Kûarasy</h2>
           <h4><small>v</small><?= KUARASY_VERSION ?></h4>
           <p>
-            You are seeing a <b>view</b>. It's located in <code>/views/example/index.php</code>.<br>
-            As this <b>view</b> is setted as <i>DEFAULT_VIEW</i> in <code>/config.php</code> you can access it through <a href="<?= SITE_URL ?>/example/"><?= SITE_URL ?>/<u>example</u>/</a> or just <a href="<?= SITE_URL ?>"><?= SITE_URL ?></a>
+            This is a <b>subview</b>. It's located in <code>/views/example/subview.php</code>. <br>
+            You can access a <b>subview</b> specifying the filename: <a href="<?= SITE_URL ?>/example/subview/"><?= SITE_URL ?>/example/<u>subview</u>/</a>
           </p>
-          <a class="btn" href="<?= SITE_URL ?>/example/subview/">
-            Access the subview
+          <a class="btn" href="<?= SITE_URL ?>/example/">
+            Back
           </a>
         </div>
       </section>
