@@ -24,19 +24,19 @@ class BaseView {
           $filename = $path . '/' . $subview . $ext;
           if (file_exists($filename)) {
             include_once($filename);
-            exit();
+            exit;
           }
         }
 
       }
 
-      // load default view if subview doesn't exists
+      // load base view if subview doesn't exists
       foreach (VIEW_FILENAMES as $name) {
         foreach (VIEW_EXTS as $ext) {
           $filename = $path . '/' . $name . $ext;
           if (file_exists($filename)) {
             include_once($filename);
-            break;
+            exit;
           }
         }
       }
@@ -47,15 +47,33 @@ class BaseView {
     return is_dir(__DIR__ . '/' . $view);
   }
 
-  public function checkStatus() {
-    echo $this->controller->checkStatus();
+  public function error($message = null) {
+    echo $this->helper->response(false, message: $message);
+    exit;
   }
 
-  public function error() {
-    echo $this->helper->createMessage(false);
+  private function callAndExit($prop, $method) {
+    echo $prop->{$method}();
+    exit;
   }
 
-  public function uploadFile() {
-    echo $this->upload->uploadFile();
+  public function canCallMethod($method) {
+    // verify this
+    if (method_exists($this, $method))
+      $this->callAndExit($this, $method);
+
+    // iterate properties
+    foreach ($this as $prop) {
+      if (method_exists($prop, $method)) {
+        $this->callAndExit($prop, $method);
+      }
+    }
+
+    // method not found
+    $this->error();
+  }
+
+  private function say_hello() {
+    echo $this->helper->response(true, message: 'Hello World!');
   }
 }

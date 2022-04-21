@@ -13,12 +13,12 @@ class Helper {
     $this->console = new Console();
   }
 
-  public function createMessage($status, $content = null, $msg = null) {
+  public function response($status, $content = null, $message = null) {
 
-    $response = [
+    $response = (object) [
       'status' => $status,
       'content' => $content,
-      'message' => $msg
+      'message' => $message
     ];
 
     header('Content-Type: application/json; charset=utf-8');

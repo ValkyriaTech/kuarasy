@@ -12,7 +12,7 @@ class BaseController {
 		$this->model = new BaseModel();
 	}
 
-	public function checkStatus() {
+	public function status() {
 		$dbConnected = $this->model->checkDbConnection();
 
 		$content = (object) [
@@ -28,6 +28,6 @@ class BaseController {
 			]
 		];
 
-		return $this->helper->createMessage(!empty($content), $content);
+		return $this->helper->response(!empty($content), $content);
 	}
 }

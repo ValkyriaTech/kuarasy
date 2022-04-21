@@ -11,7 +11,7 @@ class UploadController {
       mkdir(UPLOADS_DIR, 0777, true);
   }
 
-  public function uploadFile() {
+  public function upload_file() {
     $datePath = date('Y') . '/' . date('m');
     $directoryName = UPLOADS_DIR . $datePath;
     if (!file_exists($directoryName))
@@ -29,10 +29,10 @@ class UploadController {
         $content = (object) [
           'file_path' => $datePath . '/' . $filename
         ];
-        return $this->helper->createMessage(true, $content, 'File sent!');
+        return $this->helper->response(true, $content, 'File sent!');
 
       }
     } else
-        return $this->helper->createMessage(false, null, 'File extension not supported!');
+        return $this->helper->response(false, null, 'File extension not supported!');
   }
 }

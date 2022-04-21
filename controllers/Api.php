@@ -10,24 +10,20 @@ class Api {
     $this->view = new BaseView();
   }
 
+  private function sanitizeAction($action) {
+    if (empty($action))
+      $this->view->error();
+
+    if (!is_string($action))
+      $this->view->error();
+
+    // remove spaces
+    $action = str_replace(' ', '_', $action);
+
+    return preg_replace('/[^A-Za-z0-9\-\_]/', '', $action);
+  }
+
   public function interpretAction($action) {
-    switch ($action) {
-
-      case 'status':
-        $this->view->checkStatus();
-        break;
-
-      case 'uploadFile':
-        $this->view->uploadFile();
-        break;
-
-      case 'example':
-        echo 'Hello, world!';
-        break;
-
-      default:
-        $this->view->error();
-        break;
-    }
+    $this->view->canCallMethod($this->sanitizeAction($action));
   }
 }
