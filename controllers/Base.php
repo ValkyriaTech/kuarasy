@@ -13,6 +13,8 @@ class BaseController {
 	}
 
 	public function checkStatus() {
+		$dbConnected = $this->model->checkDbConnection();
+
 		$content = (object) [
 			'kuarasy' => [
 				'version' => KUARASY_VERSION
@@ -21,8 +23,8 @@ class BaseController {
 				'version' => phpversion()
 			],
 			'mysql' => [
-				'connected' => $this->model->checkDbConnection(),
-				'version' => $this->model->getMySqlVersion()['Value']
+				'connected' => $dbConnected,
+				'version' => $dbConnected ? $this->model->getMySqlVersion()['Value'] : null
 			]
 		];
 
