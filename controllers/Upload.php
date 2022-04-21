@@ -1,8 +1,5 @@
 <?php
 
-require_once(dirname(__DIR__, 1) . '/config.php');
-require_once('Helper.php');
-
 class UploadController {
 
   private $helper;
