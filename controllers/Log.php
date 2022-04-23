@@ -6,7 +6,7 @@ class Log{
   private $logData;
 
   public function __construct() {
-    $this->logFilename = "log";
+    $this->logFilename = 'log';
 
     if (!file_exists($this->logFilename))
       mkdir($this->logFilename, 0777, true);

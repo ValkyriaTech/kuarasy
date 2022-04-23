@@ -25,7 +25,12 @@ class Helper {
     return json_encode((object) $response);
   }
 
-  // returns a string from a loaded template file, located in /templates
+  /**
+  * returns a string from a loaded template file, located in /templates
+  * @param string $type String file template name (located in /templates)
+  * @param array $where Array template args
+  * @return string
+  */
   public function renderPhp($template, array $args) {
 
     $basePath = '';

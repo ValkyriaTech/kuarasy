@@ -10,6 +10,9 @@ class BaseModel {
     $this->helper = new Helper();
   }
 
+  /**
+  * Connect to database using PDO layer. MUST be calld before using any other method from this class
+  */
   protected function connect() {
     try {
       $this->conn = new PDO('mysql:dbname=' . K_DB_NAME . '; host=localhost', K_DB_USER, K_DB_PASSWORD);
@@ -27,7 +30,7 @@ class BaseModel {
   /**
   * Create statement query
   * OBS: Specify tableName if isn't already defined
-  * @param string $type Query tupe (select, insert, update, etc)
+  * @param string $type Query type (select, insert, update, etc)
   * @param array $fields String fields list: ['a', 'b']
   * @param array $where Array field/operation list: [['field'=>'id','operator'=>'=','value'=>8], ...]
   * @return PDOStatement

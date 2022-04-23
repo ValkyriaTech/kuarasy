@@ -20,7 +20,7 @@ define('VIEW_FILENAMES', ['index', 'default']);
 define('VIEW_EXTS', ['.html', '.php']);
 
 define('BASEPATH', '');
-define('SITE_URL', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . BASEPATH);
+define('SITE_URL', (isset($_SERVER['REQUEST_SCHEME']) && isset($_SERVER['SERVER_NAME'])) ? ($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . BASEPATH) : null);
 
 define('UPLOADS_DIR', dirname(__DIR__, 1) . BASEPATH . '/uploads/');
 define('SUPPORTED_FILE_TYPES', [
