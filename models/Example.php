@@ -1,8 +1,8 @@
 <?php
 
-require_once('Item.php');
+require_once('Base.php');
 
-class Example extends Item {
+class Example extends BaseModel {
 
   private $id;
   private $field;
@@ -17,7 +17,7 @@ class Example extends Item {
   }
 
   // create your own PDO statement
-  public function save() {
+  public function savePerson() {
     try {
       if(!empty($this->id))
         $stmt = $this->conn->prepare('UPDATE `person` SET `name` = :name WHERE `id` = :id;');
@@ -38,7 +38,7 @@ class Example extends Item {
     }
   }
 
-  // or try the query builder! (check examples on README)
+  // try the query builder! (check examples on README)
   public function updateName() {
 
     $stmt = $this->statementQueryBuilder(
@@ -60,5 +60,23 @@ class Example extends Item {
       return $stmt->rowCount();
     else
       $this->helper->log->generateLog('Error during SQL exec :(');
+  }
+
+  // or just use one of the simple functions
+  public function getByName($name) {
+
+    $personData = $this->get(
+      null, // get everything
+      [
+        [
+          'field' => 'name',
+          'operator' => '=',
+          'value' => $name
+        ]
+      ],
+      true // single row
+    );
+
+    return $personData;
   }
 }

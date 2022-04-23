@@ -1,0 +1,168 @@
+@font-face {
+  font-family: Baloo;
+  src: url(../fonts/BalooPaaji2-Regular.ttf);
+}
+
+@font-face {
+  font-family: Amatic;
+  src: url(../fonts/AmaticSC-Regular.ttf);
+}
+
+:root {
+  --textColor: #ddd;
+  --backgroundColor: rgb(20, 21, 22);
+  --hoverColor: #fff;
+  --backgroundInvertColor: rgb(232, 230, 227);
+  --textInvertColor: #2a2a2a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
+  font-family: Baloo;
+  transition-duration: .2s;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+#kuarasy {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+  #kuarasy .decoration {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 25%;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+    overflow: hidden;
+  }
+    #kuarasy .decoration .lines {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      margin-bottom: 30%;
+      margin-left: 15%;
+    }
+      #kuarasy .decoration .lines:nth-child(1) {
+        animation: rotate 70s linear infinite;
+      }
+      #kuarasy .decoration .lines:nth-child(2) {
+        animation: rotate 80s linear reverse infinite;
+      }
+      #kuarasy .decoration .lines > div {
+        height: 2px;
+        width: 30rem;
+        background-color: #ac8d0c;
+        position: absolute;
+        opacity: 0.3;
+      }
+        #kuarasy .decoration .lines > div.small {
+          width: 15rem;
+          opacity: 0.7;
+        }
+      #kuarasy .decoration .lines > div:nth-child(2) {
+        transform: rotate(45deg);
+      }
+      #kuarasy .decoration .lines > div:nth-child(3) {
+        transform: rotate(90deg);
+      }
+      #kuarasy .decoration .lines > div:nth-child(4) {
+        transform: rotate(135deg);
+      }
+      #kuarasy .decoration .lines > div.small:nth-child(1) {
+        transform: rotate(67.5deg);
+      }
+      #kuarasy .decoration .lines > div.small:nth-child(2) {
+        transform: rotate(112.5deg);
+      }
+      #kuarasy .decoration .lines > div.small:nth-child(3) {
+        transform: rotate(157.5deg);
+      }
+      #kuarasy .decoration .lines > div.small:nth-child(4) {
+        transform: rotate(202.5deg);
+      }
+  #kuarasy .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+  }
+    #kuarasy .container h2 {
+      font-family: Amatic;
+      font-size: 650%;
+      color: var(--textColor);
+      margin: 0;
+      user-select: none;
+    }
+    #kuarasy .container h4 {
+      font-family: Baloo;
+      margin: 0;
+      margin-bottom: 1rem;
+      font-size: 150%;
+    }
+    #kuarasy .container p {
+      width: 50%;
+      text-align: center;
+    }
+      #kuarasy .container p a {
+        color: #ac8d0c;
+        text-decoration: none;
+      }
+        #kuarasy .container p a:hover {
+          text-decoration: underline;
+        }
+      #kuarasy .container p code {
+        color: #eb7575;
+      }
+    #kuarasy .container ul {
+      margin: 1rem 0;
+      padding-left: 0;
+    }
+      #kuarasy .container ul li {
+        list-style: none;
+        font-size: 90%;
+      }
+        #kuarasy .container ul li i {
+          color: green;
+          margin-right: .5rem;
+        }
+    #kuarasy .container a.btn {
+      display: flex;
+      align-items: center;
+      padding: .5rem 1rem;
+      border-radius: 2rem;
+      color: var(--textColor);
+      text-decoration: none;
+      background-color: rgb(40, 41, 42);
+      transition-duration: .2s;
+      border: solid 2px rgb(40, 41, 42);
+    }
+      #kuarasy .container a.btn:hover {
+        background-color: var(--backgroundColor);
+      }

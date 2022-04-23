@@ -1,20 +1,21 @@
 <?php
-  class Log{
 
-    private $logFilename;
-    private $logData;
+class Log{
 
-    public function __construct() {
-      $this->logFilename = "log";
+  private $logFilename;
+  private $logData;
 
-      if (!file_exists($this->logFilename))
-        mkdir($this->logFilename, 0777, true);
+  public function __construct() {
+    $this->logFilename = 'log';
 
-      $this->logData = $this->logFilename . '/' . date('Y-m-d') . '.log';
-    }
+    if (!file_exists($this->logFilename))
+      mkdir($this->logFilename, 0777, true);
 
-    public function generateLog($msg) {
-      $time = date('Y-m-d H:i:s');
-      file_put_contents($this->logData, '(' . $time . ') ' . $msg . "\n", FILE_APPEND);
-    }
+    $this->logData = $this->logFilename . '/' . date('Y-m-d') . '.log';
   }
+
+  public function generateLog($msg) {
+    $time = date('Y-m-d H:i:s');
+    file_put_contents($this->logData, '(' . $time . ') ' . $msg . "\n", FILE_APPEND);
+  }
+}

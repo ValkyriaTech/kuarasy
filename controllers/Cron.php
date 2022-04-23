@@ -1,7 +1,5 @@
 <?php
 
-require_once('Helper.php');
-
 class Cron {
 
   private $task;

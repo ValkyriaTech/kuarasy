@@ -2,7 +2,7 @@
 
 // ========== KUARASY ==========
 
-define('KUARASY_VERSION', '1.4.5');
+define('KUARASY_VERSION', '1.5.0');
 
 // ========== DATABASE ==========
 
@@ -20,6 +20,7 @@ define('VIEW_FILENAMES', ['index', 'default']);
 define('VIEW_EXTS', ['.html', '.php']);
 
 define('BASEPATH', '');
+define('SITE_URL', (isset($_SERVER['REQUEST_SCHEME']) && isset($_SERVER['SERVER_NAME'])) ? ($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . BASEPATH) : null);
 
 define('UPLOADS_DIR', dirname(__DIR__, 1) . BASEPATH . '/uploads/');
 define('SUPPORTED_FILE_TYPES', [
