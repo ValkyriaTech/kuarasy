@@ -29,7 +29,7 @@ if ($action) {
   $view = strtok(current($pathInfo), '?');
   $path = (count($pathInfo) > 1) ? end($pathInfo) : null;
 
-  if(!empty($view) && $viewObj->viewExists($view))
+  if (!empty($view) && $viewObj->viewExists($view))
     $viewObj->load($view, $path);
   else
     $viewObj->load();
