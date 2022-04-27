@@ -29,7 +29,7 @@ RewriteRule . /kuarasy/index.php [L] # AND HERE
 
 ### Default view
 As default, **DEFAULT_VIEW** is defined in <code>config.php</code>. It holds the directory name of your main frontpage.  
-**Load** other views and web apps using the basic function *load('view_name')* from <code>/views/Default.php</code>
+**Load** other views and web apps using the basic function *load('view_name')* from <code>/views/Base.php</code>
 
 ### REST API
 The basic REST API in this framework uses a **action** request field to define the task / route
