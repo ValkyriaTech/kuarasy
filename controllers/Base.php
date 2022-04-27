@@ -4,7 +4,7 @@ require_once(dirname(__DIR__, 1) . '/models/Base.php');
 
 class BaseController {
 
-	private $helper;
+	protected $helper;
 	private $model;
 
 	public function __construct() {
