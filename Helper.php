@@ -42,20 +42,17 @@ class Helper {
       $basePath = implode('/', $templateData);
     }
 
-    $path = dirname(__DIR__, 1) . '/templates/' . $basePath;
-    if ($path) {
+    $path = './templates/' . $basePath;
+    $files = scandir($path);
+    foreach ($files as $key => $value) {
+      if (str_contains($value, $template)) {
 
-      $files = scandir($path);
-      foreach ($files as $key => $value) {
-        if (str_contains($value, $template)) {
+        ob_start();
+        include_once($path . $value);
+        $content = ob_get_contents();
+        ob_end_clean();
 
-          ob_start();
-          include_once($path . $value);
-          $content = ob_get_contents();
-          ob_end_clean();
-
-          return $content;
-        }
+        return $content;
       }
     }
   }
