@@ -2,7 +2,7 @@
 
 // ========== KUARASY ==========
 
-define('KUARASY_VERSION', '1.5.1');
+define('KUARASY_VERSION', '1.5.2');
 
 // ========== DATABASE ==========
 
