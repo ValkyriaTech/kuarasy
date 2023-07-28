@@ -1,15 +1,16 @@
 name: Release
 
 on:
-  push:
+  pull_request:
     branches: [ main ]
+    types: [closed]
 
 jobs:
 
   release:
     runs-on: ubuntu-latest
     env:
-      RELEASE_TAG: 1.5.1
+      RELEASE_TAG: 1.5.2
     steps:
       - uses: actions/checkout@v2
 
