@@ -7,6 +7,9 @@ class Api {
   private $view;
 
   public function __construct() {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: Content-Type');
+
     $this->view = new BaseView();
   }
 
