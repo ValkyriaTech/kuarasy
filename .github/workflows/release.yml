@@ -10,7 +10,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      RELEASE_TAG: 1.5.2
+      RELEASE_TAG: 1.6.0
     steps:
       - uses: actions/checkout@v2
 
