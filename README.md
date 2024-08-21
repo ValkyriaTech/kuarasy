@@ -5,11 +5,12 @@ Just a simple PHP - MySQL framework
 This is a very simple and basic PHP - MySQL framework. Help us improve it. Use as you wish.
 
 ## Installation
-1 - Update the database connection details in <code>/config.php</code>:
-```php
-define('K_DB_NAME', '');
-define('K_DB_USER', '');
-define('K_DB_PASSWORD', '');
+1 - Create and set database connection details in <code>/.env</code>:
+```
+DATABASE_HOST="localhost"
+DATABASE_NAME="kuarasy"
+DATABASE_USER="root"
+DATABASE_PASSWORD="123"
 ```
 2 - If you are **NOT** running directly on server root, set the BASEPATH reference in <code>/config.php</code>:
 ```php
@@ -17,6 +18,10 @@ define('BASEPATH', '/kuarasy'); // assuming you are running from https://localho
 ```
 and <code>/.htaccess</code>:
 ```
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$
 # Force Trailing slash

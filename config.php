@@ -2,13 +2,18 @@
 
 // ========== KUARASY ==========
 
-define('KUARASY_VERSION', '1.5.2');
+define('KUARASY_VERSION', '1.6.0');
+
+// ========== ENV (.env file) ==========
+
+$env = parse_ini_file('.env');
 
 // ========== DATABASE ==========
 
-define('K_DB_NAME', '');
-define('K_DB_USER', '');
-define('K_DB_PASSWORD', '');
+define('K_DB_HOST', $env['DATABASE_HOST']);
+define('K_DB_NAME', $env['DATABASE_NAME']);
+define('K_DB_USER', $env['DATABASE_USER']);
+define('K_DB_PASSWORD', $env['DATABASE_PASSWORD']);
 
 // ========== APPLICATION ==========
 
@@ -19,7 +24,7 @@ define('DEFAULT_VIEW', 'example');
 define('VIEW_FILENAMES', ['index', 'default']);
 define('VIEW_EXTS', ['.html', '.php']);
 
-define('BASEPATH', '');
+define('BASEPATH', '/kuarasy');
 define('SITE_URL', (isset($_SERVER['REQUEST_SCHEME']) && isset($_SERVER['SERVER_NAME'])) ? ($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . BASEPATH) : null);
 
 define('UPLOADS_DIR', dirname(__DIR__, 1) . BASEPATH . '/uploads/');

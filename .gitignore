@@ -5,3 +5,4 @@
 /uploads/*/*/*.svg
 /uploads/*/*/*.gif
 /uploads/*/*/*.pdf
+.env
