@@ -6,12 +6,19 @@ require_once('./controllers/Api.php');
 require_once('./controllers/Cron.php');
 require_once('./views/Base.php');
 
-$action = $_REQUEST['action'] ?? null;
-if ($action) {
+// check  for API action
+$pathInfo = array_filter(explode('/', str_replace(BASEPATH, '', $_SERVER['REQUEST_URI'])));
+$firstSegment = strtolower(reset($pathInfo) ?? '');
 
-  $api = new Api();
-  $api->interpretAction($action);
+if ($firstSegment === 'api' && isset($pathInfo[1])) {
+    // get api action key from array (next index after 'api') 
+    $actionKey = key($pathInfo) + 1;
+    $action = $pathInfo[$actionKey];
 
+    $api = new Api();
+    $api->interpretAction($action);
+
+    exit;
 } else if (!empty($argv)) {
 
   parse_str($argv[1], $params);
@@ -20,6 +27,7 @@ if ($action) {
   $cron = new Cron($task);
   $cron->execute();
 
+  exit;
 } else {
 
   $viewObj = new BaseView();
