@@ -3,14 +3,14 @@ name: Release
 on:
   pull_request:
     branches: [ main ]
-    types: [closed]
+    types: [ closed ]
 
 jobs:
 
   release:
     runs-on: ubuntu-latest
     env:
-      RELEASE_TAG: 1.6.0
+      RELEASE_TAG: 1.7.0
     steps:
       - uses: actions/checkout@v2
 

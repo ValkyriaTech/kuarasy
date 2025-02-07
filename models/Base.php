@@ -15,7 +15,7 @@ class BaseModel {
   */
   protected function connect() {
     try {
-      $this->conn = new PDO('mysql:dbname=' . K_DB_NAME . '; host=' . K_DB_HOST, K_DB_USER, K_DB_PASSWORD);
+      $this->conn = new PDO(K_DB_DRIVER . ':dbname=' . K_DB_NAME . '; host=' . K_DB_HOST, K_DB_USER, K_DB_PASSWORD);
 
       if ($this->conn) {
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

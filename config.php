@@ -2,7 +2,7 @@
 
 // ========== KUARASY ==========
 
-define('KUARASY_VERSION', '1.6.0');
+define('KUARASY_VERSION', '1.7.0');
 
 // ========== ENV (.env file) ==========
 
@@ -14,6 +14,7 @@ define('K_DB_HOST', $env['DATABASE_HOST']);
 define('K_DB_NAME', $env['DATABASE_NAME']);
 define('K_DB_USER', $env['DATABASE_USER']);
 define('K_DB_PASSWORD', $env['DATABASE_PASSWORD']);
+define('K_DB_DRIVER', 'mysql');
 
 // ========== APPLICATION ==========
 
