@@ -30,16 +30,34 @@ if ($firstSegment === 'api' && isset($pathInfo[1])) {
   exit;
 } else {
 
-  $viewObj = new BaseView();
-
+  
   $pathInfo = array_filter(explode('/', str_replace(BASEPATH, '', $_SERVER['REQUEST_URI'])));
-
-  $view = strtok(current($pathInfo), '?');
+  
+  $view = trim(strtok(current($pathInfo), '?'));
   $path = (count($pathInfo) > 1) ? end($pathInfo) : null;
+  
+  // verify custom views
+  if (array_key_exists($view, CUSTOM_VIEW)) {
+    try {
+      
+      $classFileName = CUSTOM_VIEW[$view] . '.php';
+      $className = CUSTOM_VIEW[$view] . 'View';
 
-  if (!empty($view) && $viewObj->viewExists($view))
-    $viewObj->load($view, $path);
-  else
-    $viewObj->load();
+      require_once('./views/' . $classFileName);
+      $viewObj = new $className(); // instance class object
 
+      $viewObj->loadInnerView($view);
+      
+    } catch (\Throwable $th) {
+      $this->helper->log->generateLog('Error load Custom View');
+    }
+    
+  } else {
+    $viewObj = new BaseView();
+
+    if (!empty($view) && $viewObj->viewExists($view))
+      $viewObj->load($view, $path);
+    else
+      $viewObj->load();
+  }
 }
