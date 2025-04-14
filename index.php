@@ -39,7 +39,6 @@ if ($firstSegment === 'api' && isset($pathInfo[1])) {
   // verify custom views
   if (array_key_exists($view, CUSTOM_VIEW)) {
     try {
-      
       $classFileName = CUSTOM_VIEW[$view] . '.php';
       $className = CUSTOM_VIEW[$view] . 'View';
 
@@ -49,7 +48,10 @@ if ($firstSegment === 'api' && isset($pathInfo[1])) {
       $viewObj->loadInnerView($view);
       
     } catch (\Throwable $th) {
-      $this->helper->log->generateLog('Error load Custom View');
+      $this->helper->log->generateLog('Error loadoading custom view: ' . $view);
+
+      // default view
+      $viewObj->load();
     }
     
   } else {
