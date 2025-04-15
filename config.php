@@ -2,7 +2,7 @@
 
 // ========== KUARASY ==========
 
-define('KUARASY_VERSION', '1.7.0');
+define('KUARASY_VERSION', '1.8.0');
 
 // ========== ENV (.env file) ==========
 
@@ -24,6 +24,7 @@ ini_set('display_errors', 0);
 define('DEFAULT_VIEW', 'example');
 define('VIEW_FILENAMES', ['index', 'default']);
 define('VIEW_EXTS', ['.html', '.php']);
+define('CUSTOM_VIEW', []); // View path points to View Class ['movie' => 'Movie']
 
 define('BASEPATH', '/kuarasy');
 define('SITE_URL', (isset($_SERVER['REQUEST_SCHEME']) && isset($_SERVER['SERVER_NAME'])) ? ($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . BASEPATH) : null);
